@@ -49,6 +49,13 @@ class FamilyStructure:
         self._members.append(member)
         
         return member
+        
+    def update_member(self, id, nuevos_datos):
+        for member in self._members:
+            if member["id"] == id:
+                member.update(nuevos_datos)
+                return member
+        return None
 
     def delete_member(self, id):
         ## You have to implement this method

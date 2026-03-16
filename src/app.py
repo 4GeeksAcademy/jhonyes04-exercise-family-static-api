@@ -49,6 +49,21 @@ def handle_get_member(id):
     
     return jsonify({'mensaje': "Miembro familiar no encontrado"}), 404
 
+@app.route('/members/<int:id>', methods=['PUT'])
+def handle_update_member(id):
+    body = request.get_json()
+    
+    if not body:
+        return jsonify({"mensaje": "El body está vacío"}), 400
+    
+    actualizado = jackson_family.update_member(id, body)
+    
+    if actualizado:
+        return jsonify({'mensaje': "Miembro familiar actualizado", "member": actualizado}), 200
+    else:
+        return jsonify({'mensaje': 'Miembro familiar no encontrado'}), 400
+    
+
 @app.route('/members', methods=['POST'])
 def hande_add_member():
     body = request.get_json()
