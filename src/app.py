@@ -28,19 +28,11 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
-
-# @app.route('/members', methods=['GET'])
-# def handle_hello():
-#     # This is how you can use the Family datastructure by calling its methods
-#     members = jackson_family.get_all_members()
-#     response_body = {"hello": "world",
-#                      "family": members}
-#     return jsonify(response_body), 200
-
-
 @app.route('/members', methods=['GET'])
 def handle_get_all():
     members = jackson_family.get_all_members()
+    
+    # response = {"family": members} Si se utiliza el response para dar formato a la salida no pasa el test
     
     return jsonify(members), 200
 
@@ -50,6 +42,7 @@ def handle_get_member(id):
     member = jackson_family.get_member(id)
     
     if member:
+        # response = {"family": member} Si se utiliza el response para dar formato a la salida no pasa el test
         return  jsonify(member), 200
     
     return jsonify({'mensaje': "Miembro familiar no encontrado"}), 404
@@ -62,6 +55,7 @@ def hande_add_member():
         return jsonify({"mensaje": "El body está vacío"}), 400
     
     nuevo_miembro = jackson_family.add_member(body)
+    # response = {"family": nuevo_miembro} Si se utiliza el response para dar formato a la salida no pasa el test
     return jsonify(nuevo_miembro), 200
 
 @app.route('/members/<int:id>', methods=['DELETE'])
