@@ -32,7 +32,9 @@ def sitemap():
 def handle_get_all():
     members = jackson_family.get_all_members()
     
-    # response = {"family": members} Si se utiliza el response para dar formato a la salida no pasa el test
+    # response = {
+    #         "hello": "world",
+    #     "family": members} #Si se utiliza el response para dar formato a la salida no pasa el test
     
     return jsonify(members), 200
 
