@@ -61,7 +61,7 @@ def handle_update_member(id):
     if actualizado:
         return jsonify({'mensaje': "Miembro familiar actualizado", "member": actualizado}), 200
     else:
-        return jsonify({'mensaje': 'Miembro familiar no encontrado'}), 400
+        return jsonify({'mensaje': 'Miembro familiar no encontrado'}), 404
     
 
 @app.route('/members', methods=['POST'])
